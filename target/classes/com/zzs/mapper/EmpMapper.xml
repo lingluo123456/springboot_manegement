@@ -23,7 +23,10 @@
             </if>
         </where>order by e.update_time
     </select>
-    <insert id="add">
+    <select id="findById" resultType="com.zzs.pojo.Emp">
+        select e.*,ex.* from emp e left outer join emp_expr ex on e.id = ex.emp_id where e.id = #{id};
+    </select>
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
         insert into emp(username, name, gender, phone, job, salary,
                         image, entry_date, dept_id,  create_time, update_time)
         VALUES (#{username},#{name},#{gender},#{phone},#{job},#{salary},
