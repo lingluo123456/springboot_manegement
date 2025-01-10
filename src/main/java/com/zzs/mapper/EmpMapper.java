@@ -21,4 +21,6 @@ public interface EmpMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void add(Emp emp);
 
+
+    void deleteByids(List<Integer> ids);
 }

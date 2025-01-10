@@ -5,6 +5,7 @@ import com.zzs.pojo.EmpQueryParam;
 import com.zzs.pojo.PageResult;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public interface EmpService {
 
@@ -16,4 +17,8 @@ public interface EmpService {
      * 新增员工
      */
     void add(Emp emp);
+    /**
+     * 删除员工
+     */
+    void delete(List<Integer> ids);
 }

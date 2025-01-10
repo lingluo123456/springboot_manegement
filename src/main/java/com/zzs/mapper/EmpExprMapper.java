@@ -13,4 +13,9 @@ public interface EmpExprMapper {
      * @param exprList
      */
     void add(List<EmpExpr> exprList);
+    /**
+     * 根据员工id批量删除
+     */
+
+    void deleteByEmpids(List<Integer> empids);
 }

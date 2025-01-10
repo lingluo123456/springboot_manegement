@@ -47,6 +47,7 @@ public class   DeptController {
 
     /**
      * 根据id查询部门
+     * 可以做查询回显用
      */
     @GetMapping("/{id}")
     public Result findById(@PathVariable("id") Integer id) {
