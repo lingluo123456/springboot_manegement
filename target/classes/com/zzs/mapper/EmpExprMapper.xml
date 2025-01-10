@@ -9,4 +9,12 @@
             (#{expr.empId},#{expr.begin},#{expr.end},#{expr.company},#{expr.job})
         </foreach>
     </insert>
+
+    <!--根据id批量删除-->
+    <delete id="deleteByEmpids">
+        delete from emp_expr where emp_id in
+        <foreach collection="empids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
