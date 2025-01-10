@@ -16,6 +16,5 @@ public interface EmpExprMapper {
     /**
      * 根据员工id批量删除
      */
-
     void deleteByEmpids(List<Integer> empids);
 }

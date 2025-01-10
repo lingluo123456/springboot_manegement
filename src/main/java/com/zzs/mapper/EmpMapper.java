@@ -12,10 +12,6 @@ import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    /**
-     * 分页查询
-     */
-
     List<Emp> list(EmpQueryParam empQueryParam);
 
     @Options(useGeneratedKeys = true,keyProperty = "id")
@@ -23,4 +19,8 @@ public interface EmpMapper {
 
 
     void deleteByids(List<Integer> ids);
+
+    Emp findById(Integer id);
+
+    void update(Emp emp);
 }

@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.zzs.mapper.EmpExprMapper;
 import com.zzs.mapper.EmpMapper;
 import com.zzs.pojo.Emp;
+import com.zzs.pojo.EmpExpr;
 import com.zzs.pojo.EmpQueryParam;
 import com.zzs.pojo.PageResult;
 import com.zzs.service.EmpService;
@@ -17,6 +18,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -62,12 +64,37 @@ public class EmpServceImpl implements EmpService {
         }
     }
 
+    /**
+     * 批量删除员工
+     * @param ids
+     */
     @Transactional(rollbackFor = {Exception.class})
     @Override
     public void delete(List<Integer> ids) {
         if(!CollectionUtils.isEmpty(ids)){
             empMapper.deleteByids(ids);
             empExprMapper.deleteByEmpids(ids);
+        }
+    }
+    /**
+     * 根据id查询员工
+     */
+    @Override
+    public Emp findById(Integer id) {
+        return empMapper.findById(id);
+    }
+    /**
+     * 更新员工
+     */
+    @Override
+    public void update(Emp emp) {
+        emp.setUpdateTime(LocalDateTime.now());
+        empMapper.update(emp);
+        empExprMapper.deleteByEmpids(Arrays.asList(emp.getId()));
+        List<EmpExpr> exprList = emp.getExprList();
+        if (!CollectionUtils.isEmpty(exprList)){
+            exprList.forEach(expr -> expr.setEmpId(emp.getId()));
+            empExprMapper.add(exprList);
         }
     }
 }
