@@ -86,6 +86,7 @@ public class EmpServceImpl implements EmpService {
     /**
      * 更新员工
      */
+    @Transactional(rollbackFor = {Exception.class})
     @Override
     public void update(Emp emp) {
         emp.setUpdateTime(LocalDateTime.now());

@@ -31,7 +31,7 @@
         </foreach>
     </delete>
 
-<!--   分页查询 -->
+<!--   分页条件查询 -->
     <select id="list" resultType="com.zzs.pojo.Emp">
         select e.*,d.name  dept_Name from emp e left outer join dept d on e.dept_id = d.id
         <where>
@@ -74,7 +74,7 @@
         </collection>
     </resultMap>
 
-<!--    根据id查询员工-->
+<!--    根据id查询员工（用于查询回显）-->
     <select id="findById" resultMap="empResultMap">
         select e.*,ex.id ex_id,ex.emp_id ex_empid,ex.begin ex_begin,ex.end ex_end,ex.company ex_company,ex.job ex_job
         from emp e left outer join emp_expr ex on e.id = ex.emp_id where e.id = #{id};
