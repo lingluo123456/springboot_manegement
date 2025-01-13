@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/clazzs")
@@ -36,11 +37,51 @@ public class ClazzController {
      */
     @PostMapping
     public Result add(@RequestBody Clazz clazz){
+        if(clazz.getBeginDate().isAfter(clazz.getEndDate()))return Result.error("开始日期不能在结束日期之前");
         log.info("添加班级信息，参数：{}",clazz);
         clazz.setCreateTime(LocalDateTime.now());
         clazz.setUpdateTime(LocalDateTime.now());
         clazzService.add(clazz);
         return Result.success();
     }
+
+    /**
+     * 删除班级信息
+     */
+    @DeleteMapping("/{id}")
+    public Result deleteById(@PathVariable Integer id){
+        log.info("删除班级信息，参数：{}",id);
+        clazzService.deleteById(id);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id){
+        log.info("查询班级信息，参数：{}",id);
+        Clazz clazz = clazzService.findById(id);
+        return Result.success(clazz);
+    }
+
+    /**
+     * 修改班级信息
+     */
+    @PutMapping
+    public Result update(@RequestBody Clazz clazz){
+        if(clazz.getBeginDate().isAfter(clazz.getEndDate()))return Result.error("开始日期不能在结束日期之前");
+        log.info("修改班级信息，参数：{}",clazz);
+        clazzService.update(clazz);
+        return Result.success();
+    }
+
+    /**
+     * 查询所有班级
+     */
+    @GetMapping("/list")
+    public Result list(){
+        log.info("查询所有班级");
+        List<Clazz> clazzList = clazzService.list();
+        return Result.success(clazzList);
+    }
+
 }
 

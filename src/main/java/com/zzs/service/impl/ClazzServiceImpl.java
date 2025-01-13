@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class ClazzServiceImpl implements ClazzService{
     @Override
     public PageResult<Clazz> page(ClazzQueryParam clazzQueryParam) {
         PageHelper.startPage(clazzQueryParam.getPage(), clazzQueryParam.getPageSize());
-        List<Clazz> clazzList = clazzMapper.list(clazzQueryParam);
+        List<Clazz> clazzList = clazzMapper.page(clazzQueryParam);
         clazzList.forEach(clazz -> {
             if(clazz.getBeginDate().isAfter(LocalDate.now())){
                 clazz.setStatus("未开班");
@@ -44,5 +45,38 @@ public class ClazzServiceImpl implements ClazzService{
     @Override
     public void add(Clazz clazz) {
         clazzMapper.add(clazz);
+    }
+
+    /**
+     *删除班级信息
+     */
+    @Override
+    public void deleteById(Integer id) {
+       clazzMapper.deleteById(id);
+    }
+
+    /**
+     * 根据id查询班级信息
+     */
+    @Override
+    public Clazz findById(Integer id) {
+        return clazzMapper.findById(id);
+    }
+
+    /**
+     * 更新班级信息
+     */
+    @Override
+    public void update(Clazz clazz) {
+       clazz.setUpdateTime(LocalDateTime.now());
+       clazzMapper.update(clazz);
+    }
+
+    /**
+     * 查询所有班级
+     */
+    @Override
+    public List<Clazz> list() {
+        return clazzMapper.list();
     }
 }

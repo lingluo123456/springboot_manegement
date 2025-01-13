@@ -9,8 +9,32 @@
         insert into clazz(name, room, begin_date, end_date, master_id, subject, create_time, update_time)
         values(#{name}, #{room}, #{beginDate}, #{endDate}, #{masterId}, #{subject}, #{createTime}, #{updateTime});
     </insert>
-<!--    条件分页查询-->
-    <select id="list" resultType="com.zzs.pojo.Clazz">
+<!--    更新班级信息-->
+    <update id="update">
+        update clazz
+        <set>
+            <if test="name!=null and name !=''">
+                name=#{name},
+            </if>
+            <if test="room!=null and room !=''">
+                room=#{room},
+            </if>
+            <if test="beginDate!=null">
+                begin_date=#{beginDate},
+            </if>
+            <if test="endDate!=null">
+                end_date=#{endDate},
+            </if>
+            <if test="masterId!=null">
+                master_id=#{masterId},
+            </if>
+            <if test="subject!=null">
+                subject=#{subject},
+            </if>
+        </set> where id=#{id}
+    </update>
+    <!--    条件分页查询-->
+    <select id="page" resultType="com.zzs.pojo.Clazz">
         select c.*,e.name master_name
         from clazz c left outer join emp e on c.master_id=e.id
         <where>
