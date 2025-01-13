@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface EmpMapper {
-    List<Emp> list(EmpQueryParam empQueryParam);
+    List<Emp> page(EmpQueryParam empQueryParam);
 
     @Options(useGeneratedKeys = true,keyProperty = "id")
     void add(Emp emp);
@@ -23,4 +23,7 @@ public interface EmpMapper {
     Emp findById(Integer id);
 
     void update(Emp emp);
+
+    @Select("select id, username, password, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time from emp")
+    List<Emp> list();
 }

@@ -37,4 +37,12 @@ public class ClazzServiceImpl implements ClazzService{
         Page<Clazz> pageInfo=(Page<Clazz>)clazzList;
         return new PageResult<>(pageInfo.getTotal(),pageInfo.getResult());
     }
+
+    /**
+     *添加班级信息
+     */
+    @Override
+    public void add(Clazz clazz) {
+        clazzMapper.add(clazz);
+    }
 }

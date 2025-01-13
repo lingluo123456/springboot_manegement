@@ -11,6 +11,7 @@ import com.zzs.pojo.EmpExpr;
 import com.zzs.pojo.EmpQueryParam;
 import com.zzs.pojo.PageResult;
 import com.zzs.service.EmpService;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +42,7 @@ public class EmpServceImpl implements EmpService {
          * 方式二：使用PageHelper的静态方法，传入当前页码和每页记录数，调用startPage方法，传入一个ISelect接口的实现类，实现查询功能，返回Page对象
          */
         PageHelper.startPage(empQueryParam.getPage(), empQueryParam.getPageSize());
-        List<Emp> empList = empMapper.list(empQueryParam);
+        List<Emp> empList = empMapper.page(empQueryParam);
         Page<Emp> pageInfo=(Page<Emp>)empList;
         return new PageResult<>(pageInfo.getTotal(),pageInfo.getResult());
 
@@ -98,4 +99,15 @@ public class EmpServceImpl implements EmpService {
             empExprMapper.add(exprList);
         }
     }
+
+    /**
+     * 查询所有员工
+     */
+    @Override
+    public List<Emp> list() {
+        return empMapper.list();
+    }
+
+
+
 }

@@ -32,7 +32,7 @@
     </delete>
 
 <!--   分页条件查询 -->
-    <select id="list" resultType="com.zzs.pojo.Emp">
+    <select id="page" resultType="com.zzs.pojo.Emp">
         select e.*,d.name  dept_Name from emp e left outer join dept d on e.dept_id = d.id
         <where>
             <if test="name!=null and name !=''">
