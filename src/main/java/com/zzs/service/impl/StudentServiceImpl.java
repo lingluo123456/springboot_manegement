@@ -30,39 +30,28 @@ public class StudentServiceImpl implements StudentService {
         return new PageResult<>(pageInfo.getTotal(),pageInfo.getResult());
     }
 
-    /**
-     * 添加学员
-     * @param student
-     */
+
+
     @Override
     public void add(Student student) {
        student.setCreateTime(LocalDateTime.now());
        student.setUpdateTime(LocalDateTime.now());
        studentMapper.add(student);
     }
-    /**
-     * 删除学员
-     * @param ids
-     */
+
     @Override
     public void delete(Integer[] ids) {
         if(!(ids==null||ids.length==0)){
             studentMapper.delete(ids);
         }
     }
-    /**
-     * 根据id查询学员
-     * @param id
-     * @return
-     */
+
+
     @Override
     public Student findById(Integer id) {
       return  studentMapper.findById(id);
     }
-    /**
-     * 修改学员
-     * @param student
-     */
+
     @Override
     public void update(Student student) {
         student.setUpdateTime(LocalDateTime.now());
