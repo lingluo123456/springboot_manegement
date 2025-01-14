@@ -18,4 +18,9 @@ public interface ReportMapper {
     //加上@MapKey()是为了解决mybatisx的误报，使用的是list集合，根本不用使用@MapKey
     @MapKey("gender")
     List<Map<String, Object>> getGenderData();
+
+    @MapKey("name")
+    List<Map<String, Object>> getStudentDegreeData();
+    @MapKey("pos")
+    List<Map<String, Object>> getStudentCountData();
 }

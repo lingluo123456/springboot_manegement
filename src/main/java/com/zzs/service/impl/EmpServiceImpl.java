@@ -105,6 +105,10 @@ public class EmpServiceImpl implements EmpService {
         return empMapper.list();
     }
 
+    @Override
+    public boolean findByDempId(Integer id) {
+        return empMapper.findByDempId(id) != 0;
+    }
 
 
 }

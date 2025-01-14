@@ -3,10 +3,12 @@ package com.zzs.controller;
 import com.zzs.pojo.Dept;
 import com.zzs.pojo.Result;
 import com.zzs.service.DeptService;
+import com.zzs.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Slf4j
@@ -16,6 +18,9 @@ public class   DeptController {
 
     @Autowired
     private DeptService deptService;
+
+    @Autowired
+    private EmpService empService;
 
      @GetMapping
     public Result list() {
@@ -30,6 +35,7 @@ public class   DeptController {
      */
     @DeleteMapping
     public Result delete(@RequestParam("id") Integer id) {
+        if (empService.findByDempId(id))return Result.error("该部门下有员工，不能删除");
         log.info("删除部门");
         deptService.deleteById(id);
         return Result.success();

@@ -32,4 +32,14 @@ public class ReportServiceImpl implements ReportService {
     public List<Map<String, Object>> getGenderData() {
         return reportMapper.getGenderData();
     }
+
+    @Override
+    public List<Map<String, Object>> getStudentDegreeData() {
+        return  reportMapper.getStudentDegreeData();
+    }
+
+    @Override
+    public List<Map<String, Object>> getStudentCountData() {
+        return reportMapper.getStudentCountData();
+    }
 }

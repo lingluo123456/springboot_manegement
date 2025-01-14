@@ -1,6 +1,7 @@
 package com.zzs.controller;
 
 
+import com.zzs.pojo.ClazzStudentCount;
 import com.zzs.pojo.EmpJobCount;
 import com.zzs.pojo.Result;
 import com.zzs.service.ReportService;
@@ -39,6 +40,30 @@ public class ReportController {
         log.info("员工性别统计");
         List<Map<String, Object>> genderData=reportService.getGenderData();
         return Result.success(genderData);
+
+    }
+    /**
+     * 学员学历统计
+     */
+    @GetMapping("/studentDegreeData")
+    public Result studentDegreeData(){
+        log.info("学员学历统计");
+        List<Map<String, Object>> studentDegreeData=reportService.getStudentDegreeData();
+        return Result.success(studentDegreeData);
+
+    }
+
+    /**
+     * 班级人数统计
+     */
+    @GetMapping("/studentCountData")
+    public Result studentCountData(){
+        log.info("班级人数统计");
+        List<Map<String, Object>> clazzData=reportService.getStudentCountData();
+        ClazzStudentCount clazzStudentCount =
+                new ClazzStudentCount(clazzData.stream().map(stringObjectMap -> stringObjectMap.get("pos")).toList(),
+                clazzData.stream().map(stringObjectMap -> stringObjectMap.get("sum")).toList());
+        return Result.success(clazzStudentCount);
 
     }
 }

@@ -19,4 +19,20 @@
         select if(gender=1,'男性员工','女性员工') as name,count(*) value
         from emp group by gender
     </select>
+    <select id="getStudentDegreeData" resultType="java.util.Map">
+        select case degree
+                   when 1 then '初中'
+                   when 2 then '高中'
+                   when 3 then '大专'
+                   when 4 then '本科'
+                   when 5 then '硕士'
+                   when 6 then '博士'  end as name, count(*) value
+        from student group by degree order by value;
+
+    </select>
+    <select id="getStudentCountData" resultType="java.util.Map">
+        select c.name pos, count(*) sum
+        from clazz c left outer join student s on c.id = s.clazz_id
+        group by c.name order by count(*) ;
+    </select>
 </mapper>

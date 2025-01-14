@@ -26,4 +26,7 @@ public interface EmpMapper {
 
     @Select("select id, username, password, name, gender, phone, job, salary, image, entry_date, dept_id, create_time, update_time from emp")
     List<Emp> list();
+
+    @Select("select count(*) from emp where dept_id = #{id}")
+    Integer findByDempId(Integer id);
 }
