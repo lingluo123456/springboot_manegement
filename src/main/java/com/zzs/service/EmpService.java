@@ -2,6 +2,7 @@ package com.zzs.service;
 
 import com.zzs.pojo.Emp;
 import com.zzs.pojo.EmpQueryParam;
+import com.zzs.pojo.LoginInfo;
 import com.zzs.pojo.PageResult;
 
 import java.time.LocalDate;
@@ -23,4 +24,6 @@ public interface EmpService {
     List<Emp> list();
 
     boolean findByDempId(Integer id);
+
+    LoginInfo login(Emp emp);
 }

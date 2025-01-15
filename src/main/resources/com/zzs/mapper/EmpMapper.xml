@@ -79,8 +79,11 @@
         select e.*,ex.id ex_id,ex.emp_id ex_empid,ex.begin ex_begin,ex.end ex_end,ex.company ex_company,ex.job ex_job
         from emp e left outer join emp_expr ex on e.id = ex.emp_id where e.id = #{id};
     </select>
+    <select id="selectByUsernameAndPassword" resultType="com.zzs.pojo.Emp">
+          select * from emp where username = #{username} and password = #{password}
+    </select>
 
-<!--    添加员工-->
+    <!--    添加员工-->
     <insert id="add" useGeneratedKeys="true" keyProperty="id">
         insert into emp(username, name, gender, phone, job, salary,
                         image, entry_date, dept_id,  create_time, update_time)
