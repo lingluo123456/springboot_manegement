@@ -1,4 +1,4 @@
-package com.zzs.pojo;
+package com.zzs.utils;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
