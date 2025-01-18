@@ -1,5 +1,6 @@
 package com.zzs.service;
 
+import com.zzs.pojo.ClazzStudentCount;
 import com.zzs.pojo.EmpJobCount;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface ReportService {
 
     List<Map<String, Object>> getStudentDegreeData();
 
-    List<Map<String, Object>> getStudentCountData();
+    ClazzStudentCount getStudentCountData();
 }

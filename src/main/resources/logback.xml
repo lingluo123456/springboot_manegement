@@ -18,13 +18,11 @@
 			<!-- 最大文件大小，超过这个大小会触发滚动到新文件，默认为 10MB -->
 			<maxFileSize>10MB</maxFileSize>
 		</rollingPolicy>
-
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<!--格式化输出：%d 表示日期，%thread 表示线程名，%-5level表示级别从左显示5个字符宽度，%msg表示日志消息，%n表示换行符 -->
 			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
 		</encoder>
 	</appender>
-
 	<!-- 日志输出级别 -->
 	<root level="INFO">
 		<appender-ref ref="STDOUT" />

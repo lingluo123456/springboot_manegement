@@ -44,6 +44,8 @@ public class ClazzServiceImpl implements ClazzService{
      */
     @Override
     public void add(Clazz clazz) {
+        clazz.setCreateTime(LocalDateTime.now());
+        clazz.setUpdateTime(LocalDateTime.now());
         clazzMapper.add(clazz);
     }
 

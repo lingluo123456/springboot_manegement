@@ -12,16 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RestController
 public class UploadController {
-    /**
-     * 本地磁盘存储方案
-     */
-
-    /*@PostMapping("/upload")
-    public Result upload(String name , Integer age , @RequestParam("file") MultipartFile file) throws Exception {
-        log.info("name:{},age:{},file:{}",name,age,file);
-        file.transferTo(new File("D:\\javalearn\\javaweb\\image\\"+file.getOriginalFilename()));
-        return Result.success();
-    }*/
 
     /**
      * 阿里云OSS存储方案

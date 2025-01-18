@@ -39,8 +39,6 @@ public class ClazzController {
     public Result add(@RequestBody Clazz clazz){
         if(clazz.getBeginDate().isAfter(clazz.getEndDate()))return Result.error("开始日期不能在结束日期之前");
         log.info("添加班级信息，参数：{}",clazz);
-        clazz.setCreateTime(LocalDateTime.now());
-        clazz.setUpdateTime(LocalDateTime.now());
         clazzService.add(clazz);
         return Result.success();
     }

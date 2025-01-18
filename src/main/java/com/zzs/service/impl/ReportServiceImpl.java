@@ -2,6 +2,7 @@ package com.zzs.service.impl;
 
 
 import com.zzs.mapper.ReportMapper;
+import com.zzs.pojo.ClazzStudentCount;
 import com.zzs.pojo.EmpJobCount;
 import com.zzs.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,11 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public List<Map<String, Object>> getStudentCountData() {
-        return reportMapper.getStudentCountData();
+    public ClazzStudentCount getStudentCountData() {
+        ClazzStudentCount clazzStudentCount = new ClazzStudentCount();
+        List<Map<String, Object>> clazzData=reportMapper.getStudentCountData();
+        clazzStudentCount.setClazzList(clazzData.stream().map(stringObjectMap -> stringObjectMap.get("pos")).toList());
+        clazzStudentCount.setDataList(clazzData.stream().map(stringObjectMap -> stringObjectMap.get("sum")).toList());
+        return clazzStudentCount;
     }
 }

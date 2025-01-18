@@ -6,10 +6,7 @@ import com.zzs.pojo.Result;
 import com.zzs.service.DeptService;
 import com.zzs.service.EmpService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @Slf4j
@@ -23,14 +20,12 @@ public class   DeptController {
     @Autowired
     private EmpService empService;
 
-     @GetMapping
+    @GetMapping
     public Result list() {
         log.info("查询部门所有数据");
         List<Dept> depts=deptService.findAll();
         return Result.success(depts);
     }
-
-
     /**
      * 删除部门
      */
@@ -42,7 +37,6 @@ public class   DeptController {
         deptService.deleteById(id);
         return Result.success();
     }
-
     /**
      * 添加部门
      */
@@ -53,10 +47,8 @@ public class   DeptController {
         deptService.add(dept);
         return Result.success();
     }
-
     /**
-     * 根据id查询部门
-     * 可以做查询回显用
+     * 根据id查询部门,可以做查询回显用
      */
     @GetMapping("/{id}")
     public Result findById(@PathVariable("id") Integer id) {
@@ -64,7 +56,6 @@ public class   DeptController {
         Dept dept = deptService.findById(id);
         return Result.success(dept);
     }
-
     /**
      * 修改部门
      */

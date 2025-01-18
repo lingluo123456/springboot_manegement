@@ -59,10 +59,8 @@ public class ReportController {
     @GetMapping("/studentCountData")
     public Result studentCountData(){
         log.info("班级人数统计");
-        List<Map<String, Object>> clazzData=reportService.getStudentCountData();
-        ClazzStudentCount clazzStudentCount =
-                new ClazzStudentCount(clazzData.stream().map(stringObjectMap -> stringObjectMap.get("pos")).toList(),
-                clazzData.stream().map(stringObjectMap -> stringObjectMap.get("sum")).toList());
+        ClazzStudentCount clazzStudentCount=reportService.getStudentCountData();
+
         return Result.success(clazzStudentCount);
 
     }

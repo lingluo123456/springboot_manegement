@@ -24,7 +24,7 @@ public class OperationLogAspect {
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         OperateLog operateLog = new OperateLog();
         long startTime = System.currentTimeMillis();
-        Object result = null;
+        Object result;
 
             // 获取操作人信息，这里假设从 SecurityContextHolder 中获取，可根据实际情况修改
         operateLog.setOperateEmpId(getCurrentUserId());
