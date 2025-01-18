@@ -1,6 +1,8 @@
 package com.zzs.filter;
 
+import com.zzs.utils.CurrentHolder;
 import com.zzs.utils.JwtUtils;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,8 +36,11 @@ public class TokenFilter implements Filter {
         }
         //4.如果有token，就解析token，如果解析失败，返回401
         try {
-            JwtUtils.parseToken(token);
-            //5.如果解析成功，放行
+            Claims claims =JwtUtils.parseToken(token);
+            Integer empId=Integer.parseInt(claims.get("id").toString());
+            CurrentHolder.setCurrentId(empId);
+            log.info("令牌合法，设置当前员工id:{}",empId);
+
         } catch (Exception e) {
             log.info("令牌非法，状态码401");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -45,5 +50,7 @@ public class TokenFilter implements Filter {
         log.info("令牌合法，放行");
         filterChain.doFilter(request, response);
 
+        CurrentHolder.remove();
     }
+
 }

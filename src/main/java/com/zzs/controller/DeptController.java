@@ -1,5 +1,6 @@
 package com.zzs.controller;
 
+import com.zzs.anno.Log;
 import com.zzs.pojo.Dept;
 import com.zzs.pojo.Result;
 import com.zzs.service.DeptService;
@@ -33,6 +34,7 @@ public class   DeptController {
     /**
      * 删除部门
      */
+    @Log
     @DeleteMapping
     public Result delete(@RequestParam("id") Integer id) {
         if (empService.findByDempId(id))return Result.error("该部门下有员工，不能删除");
@@ -44,6 +46,7 @@ public class   DeptController {
     /**
      * 添加部门
      */
+    @Log
     @PostMapping
     public Result add(@RequestBody Dept dept) {
         log.info("添加部门");
@@ -65,6 +68,7 @@ public class   DeptController {
     /**
      * 修改部门
      */
+    @Log
     @PutMapping
     public Result update(@RequestBody Dept dept) {
         log.info("修改部门");

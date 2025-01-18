@@ -66,4 +66,5 @@ public class ReportController {
         return Result.success(clazzStudentCount);
 
     }
+
 }
